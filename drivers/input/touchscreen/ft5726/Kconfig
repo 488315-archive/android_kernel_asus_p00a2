@@ -1,0 +1,16 @@
+#
+# FOCAL FT5726 Touchscreen driver
+#
+
+config TOUCHSCREEN_FT5726
+	boolean "FOCAL FT5726 touchpanel driver"
+	depends on I2C
+	default n
+	help
+	  This is the main file for touchpanel driver for FOCAL FT5726
+	  touchscreens.
+
+	  Say Y here if you have a FOCAL FT5726 touchscreen connected
+	  to your system.
+
+	  If unsure, say N.

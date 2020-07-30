@@ -1,0 +1,35 @@
+ifeq ($(KERNELRELEASE),)  
+	KERNELDIR ?= /opt/FriendlyARM/tiny4412/android/linux-3.5  
+	PWD := $(shell pwd)
+
+	targetobjsct := $(wildcard *.c)
+	targetobjsc := $(filter-out %.mod.c %.MOD.C, $(targetobjsct))
+	targetobjso := $(targetobjsc:.c=.o)
+	focalTestLib:= focal_test_lib.a
+	remoteDir   := /home/samples/debugfs/
+#exec this target when exec make in command line.
+#exec target clean first, then modules 
+build: clean modules makeLib
+ 
+modules:
+	@echo $(targetobjso)	
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules 
+	@echo "step bbb"
+
+modules_install:  
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install  
+clean: 
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions 
+	rm -rf Mod* mod* 
+
+makeLib:
+	@rm -rf $(focalTestLib)
+	ar -rc $(focalTestLib) $(targetobjso)
+	cp -f $(focalTestLib) $(remoteDir)$(focalTestLib)
+
+.PHONY: build modules modules_install clean makeLib  
+else
+	ftxxxx_ts-objs := Config_FT5822.o Config_FT5X46.o Config_FT8606.o DetailThreshold.o Global.o ini.o Test_FT5822.o Test_FT5X46.o Test_FT8606.o test_lib.o	
+	obj-m := ftxxxx_ts.o	
+endif
+

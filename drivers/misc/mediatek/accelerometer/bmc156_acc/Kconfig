@@ -1,0 +1,19 @@
+config MTK_BMC156_ACC
+	bool "MTK_BMC156_ACC for MediaTek package"
+	default n
+	help
+	  It support different accelerometer sensor.
+          If this option is set,
+	  it will support
+          MTK_BMC156_ACC Accelerometer.
+
+config BMC156_LOWPASS
+	bool "BMC156_LOWPASS for Mediatek package"
+	default n
+	help
+	Say Y here if you have BMC156_LOWPASS.
+
+	If unsure, say N.
+
+	To compile this dirver as a module, choose M here: the
+	module will be called.

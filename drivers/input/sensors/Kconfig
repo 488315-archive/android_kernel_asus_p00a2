@@ -1,0 +1,14 @@
+#
+# Sensor drivers configuration
+#
+config SENSORS_AP3425H
+        bool "AP3425H Proximity & Light Sensor"
+        depends on I2C
+
+config SENSORS_BMC156
+        bool "BMC156 G-sensor & E-compass"
+        depends on I2C
+
+config HALL_SENSOR
+       bool "Hall sensor"
+       default n

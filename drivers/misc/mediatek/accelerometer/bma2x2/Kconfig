@@ -1,0 +1,26 @@
+
+config MTK_BMA2X2
+	bool "MTK_BMA2X2 for MediaTek package"
+	default n
+	help
+	  It support different accelerometer sensor.
+          If this option is set,
+	  it will support
+          MTK_BMA2X2 Accelerometer.
+
+config SENSORS_BMA2X2_ENABLE_INT1
+	tristate "BMA2X2 acceleration sensor interrupt INT1 support"
+	depends on MTK_BMA2X2
+	help
+	 If you say yes here, you get INT1 support for Bosch Sensortec
+	 acceleration sensors BMA255/BMA250E/BMA222E/BMA280.
+	 Select it will disable interrupt INT2 support
+
+config SENSORS_BMA2X2_ENABLE_INT2
+	tristate "BMA2X2 acceleration sensor interrupt INT2 support"
+	depends on MTK_BMA2X2
+	help
+	 If you say yes here, you get INT2 support for Bosch Sensortec
+	 acceleration sensors BMA255/BMA250E/BMA222E/BMA280.
+	 Can only open if you do NOT open interrupt INT1 support
+
